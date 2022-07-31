@@ -1,15 +1,25 @@
-import { CartItem } from './interfaces/cart-item';
-import { ShoppingCart } from './shopping-cart';
+import { CartItem } from './entities/interfaces/cart-item';
+import { Messeging } from './services/messeging';
+import { Order } from './entities/order-status';
+import { Persistency } from './services/persistency';
+import { Product } from './entities/product';
+import { ShoppingCart } from './entities/shopping-cart';
 
 const shoppingCart = new ShoppingCart();
+const messeging = new Messeging();
+const persistency = new Persistency();
 
-const smarthphone: CartItem = { name: 'J5 Prime', price: 1400.45 };
-const monitor: CartItem = { name: 'Acer 22"', price: 860.5 };
-const keybord: CartItem = { name: 'RedDragon ZX', price: 340.18 };
+const order = new Order(shoppingCart, messeging, persistency);
+
+const smarthphone: CartItem = new Product('J5 Prime', 1400.45);
+const monitor: CartItem = new Product('Acer 22"', 860.5);
+const keybord: CartItem = new Product('RedDragon ZX', 340.18);
 
 const cartItems: CartItem[] = [smarthphone, monitor, keybord];
 
 cartItems.forEach((data) => shoppingCart.addItems(data));
 console.log(shoppingCart.getItems());
 console.log(`R$ ${shoppingCart.total()}`);
-shoppingCart.checkout();
+console.log(order.orderstatus);
+order.checkout();
+console.log(order.orderstatus);

@@ -47,9 +47,19 @@ export class ShoppingCartLegacy {
     }
 
     this._orderstatus = 'closed';
-    console.log(`Seu pedido com o total de R$ ${this.total()} foi recebido`);
+    this.sendMessage(
+      `Seu pedido com o total de R$ ${this.total()} foi recebido`,
+    );
     this.save();
     this.clear();
+  }
+
+  get orderStatus(): OrderStatusLegacy {
+    return this._orderstatus;
+  }
+
+  sendMessage(message: string): void {
+    console.log('Mensagem enviada:', message);
   }
 }
 
@@ -65,3 +75,4 @@ cartItems.forEach((data) => shoppingCart.addItems(data));
 console.log(shoppingCart.getItems());
 console.log(`R$ ${shoppingCart.total()}`);
 shoppingCart.checkout();
+shoppingCart.sendMessage('Pedido finalizado com sucesso');
