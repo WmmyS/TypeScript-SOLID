@@ -1,11 +1,15 @@
-import { CartItem } from './entities/interfaces/cart-item';
+import { NoDiscount, TenPercentDiscount } from './classes/discount';
+import { CartItem } from './classes/interfaces/cart-item';
 import { Messeging } from './services/messeging';
-import { Order } from './entities/order-status';
+import { Order } from './classes/order-status';
 import { Persistency } from './services/persistency';
-import { Product } from './entities/product';
-import { ShoppingCart } from './entities/shopping-cart';
+import { Product } from './classes/product';
+import { ShoppingCart } from './classes/shopping-cart';
 
-const shoppingCart = new ShoppingCart();
+const noDiscount = new NoDiscount();
+const tenPercentDiscount = new TenPercentDiscount();
+//const fiftyPercentDiscount = new FiftyPercentDiscount();
+const shoppingCart = new ShoppingCart(tenPercentDiscount);
 const messeging = new Messeging();
 const persistency = new Persistency();
 
@@ -19,7 +23,7 @@ const cartItems: CartItem[] = [smarthphone, monitor, keybord];
 
 cartItems.forEach((data) => shoppingCart.addItems(data));
 console.log(shoppingCart.getItems());
-console.log(`R$ ${shoppingCart.total()}`);
+console.log(`R$ ${shoppingCart.totalWithDiscount()}`);
 console.log(order.orderstatus);
 order.checkout();
 console.log(order.orderstatus);
