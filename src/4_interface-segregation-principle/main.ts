@@ -5,9 +5,11 @@ import { Order } from './classes/order-status';
 import { Persistency } from './services/persistency';
 import { Product } from './classes/product';
 import { ShoppingCart } from './classes/shopping-cart';
+import { EnterpriselCustomer, IndividualCustomer } from './classes/customer';
 
 /**
- * As classes devem ser fechadas para alteração e abertas para implementação.
+ * Classes criadas não devem ser forçadas a a depender de interfaces, types ou classes abstratas que não utilizam,
+ *  ou implementá-las sem necessidade.
  */
 
 const noDiscount = new NoDiscount();
@@ -16,8 +18,10 @@ const fiftyPercentDiscount = new FiftyPercentDiscount();
 const shoppingCart = new ShoppingCart(tenPercentDiscount);
 const messeging = new Messeging();
 const persistency = new Persistency();
+const individualCustomer = new IndividualCustomer('Wesley', 'Santos', '125456987-58');
+const enterpriselCustomer = new EnterpriselCustomer('Empresa Boa', '456789456123/2158');
 
-const order = new Order(shoppingCart, messeging, persistency);
+const order = new Order(shoppingCart, messeging, persistency, enterpriselCustomer);
 
 const smarthphone: CartItem = new Product('J5 Prime', 1400.45);
 const monitor: CartItem = new Product('Acer 22"', 860.5);

@@ -5,6 +5,11 @@ import { Persistency } from './services/persistency';
 import { Product } from './entities/product';
 import { ShoppingCart } from './entities/shopping-cart';
 
+/**
+ * Cada classe ou objeto deve ter responsabilidade única, evitando classes que fazem
+ * várias coisas fora de seua responsabilidade, ou seja, God class.
+ */
+
 const shoppingCart = new ShoppingCart();
 const messeging = new Messeging();
 const persistency = new Persistency();

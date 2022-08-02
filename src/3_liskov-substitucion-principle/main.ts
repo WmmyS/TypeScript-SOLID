@@ -7,7 +7,8 @@ import { Product } from './classes/product';
 import { ShoppingCart } from './classes/shopping-cart';
 
 /**
- * As classes devem ser fechadas para alteração e abertas para implementação.
+ * As classes filhas devem ser capazes de fazer o que a classe mãe faz de forma implementada,
+ * porém a classe mãe deve ser capaz de fazer e ter as mesmas propriedades sem precisar ser alterada.
  */
 
 const noDiscount = new NoDiscount();
